@@ -36,8 +36,8 @@ def send_mfa_code_text_message(mfa_instance, mfa_code):
     try:
         twilio_client.messages.create(
             body=strings.MFA_CODE_TEXT_MESSAGE.format(code=mfa_code),
-            to=mfa_instance.phone_number,
-            from_=twilio_num
+            to=('+'+mfa_instance.phone_number),
+            from_=('+'+twilio_num)
         )
     except TwilioRestException as e:
         if e.code == NOT_SMS_DEVICE_CODE:
