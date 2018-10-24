@@ -1,6 +1,6 @@
 from __future__ import absolute_import, unicode_literals
 
-from twilio.rest import TwilioRestClient
+from twilio.rest import Client
 from twilio.base.exceptions import TwilioRestException
 
 from deux import strings
@@ -32,7 +32,7 @@ def send_mfa_code_text_message(mfa_instance, mfa_code):
               "testing purposes, the MFA code is {code}".format(code=mfa_code))
         return
 
-    twilio_client = TwilioRestClient(sid, token)
+    twilio_client = Client(sid, token)
     try:
         twilio_client.messages.create(
             body=strings.MFA_CODE_TEXT_MESSAGE.format(code=mfa_code),
